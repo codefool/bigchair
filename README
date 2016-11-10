@@ -1,3 +1,61 @@
 bigchair
 
 Command line interface to kirok.
+
+Shortcuts:
+. - 'with' context
+# - scratchpad context
+$ - Catalog
+
+Commands:
+
+Creating Objects
+mk [from] prototype [as] [bag. ...]name [[bag. ...]name]
+
+mk from #.Phaser1 as Enterprise.PrimaryHull.ForwardSection.Phaser1-1
+mk from #.Phaser2 as Enterprise.PrimaryHull.ForwardSection.Phaser2-1
+mk from #.Phaser2 as Enterprise.PrimaryHull.ForwardSection.Phaser2-2
+mk #.Phaser3 Enterprise.PrimaryHull.ForwardSection.Phaser3-1
+mk #.Phaser3 Enterprise.PrimaryHull.ForwardSection.Phaser3-2
+mk #.Phaser3 Enterprise.PrimaryHull.ForwardSection.Phaser3-3
+mk #.Phaser3 Enterprise.PrimaryHull.ForwardSection.Phaser3-4
+
+Create a prototype Object and copy it multiple times
+mktmp Catalog.Phaser1 #.Phaser1
+with #.Phaser1
+.facing = ABCDEF
+.range = 20
+
+with Enterprise.PrimaryHull.ForwardSection
+cp #.phaser1 .phaser1-1
+cp #.phaser2 .phaser2-1 .phaser2-2
+cp #.phaser3 .phaser3-1 .phaser3-2 .phaser3-3
+
+Set the focus to a particular bag:
+with Enterprise.PrimaryHull.ForwardSection
+mk Catalog.Phaser1 as .Phaser1-1
+mk Catalog.Phaser2 as .Phaser2-1 .Phaser2-2
+mk Catalog.Phaser3 as .Phaser3-1 .Phaser3-2 .Phaser3-3
+
+Linking Objects
+- Objects with unique names can be referenced directly
+- Objects which are conduits 
+- Objects have ports that are either input, output, or both.
+- Ports can have a type, as in "power in" or "data out"
+- So a "data out" port from a sensor array can be linked to a "data in" to the library computer.
+
+with Enterprise
+ln .Battery1-1 .Conduit1 .phaser1-1
+ln .BAT1-1 .COND1-1 .PH1-1
+
+Unlink a connection:
+un .BAT1-1
+
+Deleteing Objects
+rm Object [Object ..]
+
+Listing Objects
+
+Referencing Objects
+- If Object is a bag, support dot notation
+- Object.Object.Object.Object
