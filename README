@@ -2,10 +2,22 @@ bigchair
 
 Command line interface to kirok.
 
-Shortcuts:
-. - 'with' context
+Object Manipulation
+
+Objects have named properties and attributes. Properties are data, attributes denote behavior (implies interface)
+
+Object.name - refers to an Object property
+Object:name - refers to an Object attribute
+
+Prefix Shortcuts:
+. - 'with' context (default root)
 # - scratchpad context
 $ - Catalog
+: - attribute operator
+
+objectref = [.][object. ...]object
+propref = objectref.name
+attributeref = objectref:attribute
 
 Commands:
 
@@ -25,6 +37,8 @@ mktmp Catalog.Phaser1 #.Phaser1
 with #.Phaser1
 .facing = ABCDEF
 .range = 20
+: chargable
+: buildable
 
 with Enterprise.PrimaryHull.ForwardSection
 cp #.phaser1 .phaser1-1
@@ -54,7 +68,25 @@ un .BAT1-1
 Deleteing Objects
 rm Object [Object ..]
 
+Attributes:
+set object:attribute - sets attribute on object
+unset object:attribute - unsets attribute on object
+
++ attribute - sets attribute on 'with' object
+- attribute - removes attribute from 'with' object
+
+can be chained:
+with Enterprise
++movable-destructable
+
+set Enterprise+movable-destructable
+
 Listing Objects
+ls # - list what's in the scratchpad
+ls $ - list what's in the catalog
+ls - list everything
+ls : - lists all possible attributes
+ls object: - lists all attributes on Object object
 
 Referencing Objects
 - If Object is a bag, support dot notation
