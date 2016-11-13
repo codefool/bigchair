@@ -57,12 +57,43 @@ Linking Objects
 - Objects have ports that are either input, output, or both.
 - Ports can have a type, as in "power in" or "data out"
 - So a "data out" port from a sensor array can be linked to a "data in" to the library computer.
+Port types:
+- Data (in/out/bi)
+- Power (in/out)
+- Crew (bi)
+
 
 with Enterprise
 ln .Battery1-1 .Conduit1 .phaser1-1
 ln .BAT1-1 .COND1-1 .PH1-1
 
-Unlink a connection:
+Items can be linked quickly if a route exists between the two:
+route|rt component1 component2
+
+If a route exists between the two components, then they are linked including any required intermediate components. 
+
+Component classes can be used:
+
+rt Battery Phaser1    - route any available battery to any Phaser1
+
+A route is only created if there are available components to satisfy the route. The forcert command creates the route if 
+at all possible:
+
+rt force Battery Phaser1
+
+To see if a route exists:
+
+rt trace component1 component2
+
+Example:
+
+rt trace Battery Phaser1
+
+1/85 : BAT1-1/50  -> COND3-2/100 -> COND2-1/100 -> COND1-5/74  -> PHA1-3/100
+2/85 :                           +- COND2-2/100 -> COND1-3/100 -> PHA1-1/78
+3/96*: BAT2-2/100 -> COND3-3/100 -> COND2-2/100 -> COND1-3/100 -> PHA1-1/78
+
+Remove a component from a connection
 un .BAT1-1
 
 Deleteing Objects
