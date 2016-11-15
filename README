@@ -14,6 +14,7 @@ Prefix Shortcuts:
 # - scratchpad context
 $ - Catalog
 : - attribute operator
+% - alias expansion
 
 objectref = [.][object. ...]object
 propref = objectref.name
@@ -122,3 +123,13 @@ ls object: - lists all attributes on Object object
 Referencing Objects
 - If Object is a bag, support dot notation
 - Object.Object.Object.Object
+
+Create alias:
+alias name=value
+unalias name
+
+alias lhs=Enterprise.PrimaryHull.ForwardSection
+alias rhs=Enterprise.SecondayHull.EngineeringSection
+rt %lhs %rhs
+
+
