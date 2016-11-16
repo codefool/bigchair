@@ -4,7 +4,8 @@ Command line interface to kirok.
 
 Object Manipulation
 
-Objects have named properties and attributes. Properties are data, attributes denote behavior (implies interface)
+Objects have named properties and attributes. Properties are data, attributes denote behavior (implies interface) that can
+also have data to further define the behavior. e.g., explosive has damage and type (fire, energy, etc.)
 
 Object.name - refers to an Object property
 Object:name - refers to an Object attribute
