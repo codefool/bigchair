@@ -20,6 +20,7 @@ $ - Catalog
 objectref = [.][object. ...]object
 propref = objectref.name
 attributeref = objectref:attribute
+attributedata = attributeref.objectref
 
 Commands:
 
