@@ -56,19 +56,10 @@ mk Catalog.Phaser3 as .Phaser3-1 .Phaser3-2 .Phaser3-3
 
 Linking Objects
 - Objects with unique names can be referenced directly
-- Objects which are conduits 
-- Objects have ports that are either input, output, or both.
-- Ports can have a type, as in "power in" or "data out"
-- So a "data out" port from a sensor array can be linked to a "data in" to the library computer.
-Port types:
-- Data (in/out/bi)
-- Power (in/out)
-- Crew (bi)
-
 
 with Enterprise
-ln .Battery1-1 .Conduit1 .phaser1-1
-ln .BAT1-1 .COND1-1 .PH1-1
+ln .Battery1-1 .phaser1-1
+ln .BAT1-1 .PH1-1
 
 Items can be linked quickly if a route exists between the two:
 route|rt component1 component2
@@ -133,5 +124,27 @@ unalias name
 alias lhs=Enterprise.PrimaryHull.ForwardSection
 alias rhs=Enterprise.SecondayHull.EngineeringSection
 rt %lhs %rhs
+
+A system is a collection of components for a collective function. For example, a phaser bank not only requires power, 
+but also a targeting computer and targeting control.
+
+mksys is used to create a system from the required list of components, if they are available:
+
+mksys template name [component ...]
+
+The -force flag may be used to pull resources if not all required components are free:
+
+mksys -force Phaser-1 PHA-1
+
+If a specific component(s) is desired it may be specified:
+
+mksys Phaser-1 PHA-1 .PHA1-1 .BAT3-2
+
+Systems may disbanded with unsys:
+
+unsys PHA-1
+
+
+
 
 
