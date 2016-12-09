@@ -144,7 +144,10 @@ Systems may disbanded with unsys:
 
 unsys PHA-1
 
+=================================================================================
+DEVELOPER COMMANDS
 
+inflict system_name damage
 
 
 
